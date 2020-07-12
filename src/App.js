@@ -51,7 +51,6 @@ class App extends Component {
 
   render() {
     const modalAdicionarId = 'modalAdd';
-    const modalTabelaId = 'modalTabela';
 
     return (
       <div className="App">
