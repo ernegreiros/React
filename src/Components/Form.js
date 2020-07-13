@@ -17,10 +17,16 @@ const Input = props => {
 
 class Form extends Component {
 
-    state = {
-        nome: '',
-        sobrenome: '',
-        email: ''
+    constructor(props) {
+        super(props);
+
+        this.stateInicial = {
+            nome: '',
+            sobrenome: '',
+            email: ''
+        }
+
+        this.state = this.stateInicial;
     }
 
     onChange = (event) => {
@@ -29,13 +35,9 @@ class Form extends Component {
         });
     }
 
-    onSubmit = (event, cadastro, adicionaLinha) => {
-         adicionaLinha(event, cadastro);
-         this.setState({
-            nome: '',
-            sobrenome: '',
-            email: ''
-         });
+    onSubmit = () => {
+        this.props.adicionaLinha(this.state);
+        this.setState(this.stateInicial);
     }
 
     render() {
@@ -43,7 +45,7 @@ class Form extends Component {
         const { adicionaLinha } = this.props;
 
         return (
-            <form onSubmit={event => this.onSubmit(event, cadastro, adicionaLinha)} >
+            <form>
                 <div className="row">
                     <div className="col">
                         <Input
@@ -79,8 +81,9 @@ class Form extends Component {
                     <div className="col">
                         <button
                             style={{ float: "right" }}
-                            type="submit"
-                            className="btn btn-primary">
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={this.onSubmit}>                            
                             Criar
                         </button>
                     </div>

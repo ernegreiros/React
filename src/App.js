@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import Modal from './Components/Modal';
 import Tabela from './Components/Tabela';
@@ -37,27 +37,19 @@ class App extends Component {
     );
   }
 
-  adicionaLinha = (event, novaLinha) => {
-    event.preventDefault();
-    const { autores } = this.state;
-    autores.push(novaLinha);
-    this.setState(
-      {
-        autores: autores
-      }
-    );
-    
+  adicionaLinha = novaLinha => {
+    this.setState({ autores: [...this.state.autores, novaLinha] })
   }
 
   render() {
     const modalAdicionarId = 'modalAdd';
 
     return (
-      <div className="App">
+      <Fragment>
         <Tabela autores={this.state.autores} removeLinha={this.removeLinha} />
         <button
           type="button"
-          style={{ margin: "1%", float:"right" }}
+          style={{ margin: "1%", float: "right" }}
           className="btn btn-primary"
           data-toggle="modal"
           data-target={"#" + modalAdicionarId}>
@@ -68,7 +60,7 @@ class App extends Component {
           modalBody={<Form adicionaLinha={this.adicionaLinha} />}
           modalId={modalAdicionarId}
         />
-      </div>
+      </Fragment>
     );
   }
 }
