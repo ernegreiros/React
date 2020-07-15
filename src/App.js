@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
+import NavBar from './Components/NavBar';
 import Modal from './Components/Modal';
 import Tabela from './Components/Tabela';
 import Form from './Components/Form';
@@ -36,7 +37,7 @@ class App extends Component {
         }),
       }
     );
-    
+
     PopUp.showPopUp('error', 'Removido com sucesso!');
 
   }
@@ -51,20 +52,23 @@ class App extends Component {
 
     return (
       <Fragment>
-        <h2>Usuários</h2>
-        <Tabela autores={this.state.autores} removeLinha={this.removeLinha} />
-        <button
-          type="button"
-          style={{ margin: "2%", float: "right" }}
-          className="btn blue-grey darken-4 modal-trigger"
-          data-target={modalAdicionarId}>
-          Adicionar Linha
+        <NavBar />
+        <div className="container" style={{marginTop: "3%" }}>
+          <h2>Usuários</h2>
+          <Tabela autores={this.state.autores} removeLinha={this.removeLinha} />
+          <button
+            type="button"
+            style={{ margin: "2%", float: "right" }}
+            className="btn blue-grey darken-4 modal-trigger"
+            data-target={modalAdicionarId}>
+            Adicionar Linha
         </button>
-        <Modal
-          ModalId={modalAdicionarId}
-          ModalHeader="Cadastro"
-          ModalBody={<Form adicionaLinha={this.adicionaLinha} />}
-        />
+          <Modal
+            ModalId={modalAdicionarId}
+            ModalHeader="Cadastro"
+            ModalBody={<Form adicionaLinha={this.adicionaLinha} />}
+          />
+        </div>
       </Fragment>
     );
   }

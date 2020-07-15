@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Graficos from './Pages/PaginaComGrafico';
+import NotFound from './Pages/NotFound';
+import Cards from './Pages/PaginaComCards';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route path='/' exact={true} component={App} />
+      <Route path='/Graficos' component={Graficos} />
+      <Route path='/Cards' component={Cards} />
+      <Route component={NotFound} />
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
