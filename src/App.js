@@ -3,6 +3,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import Modal from './Components/Modal';
 import Tabela from './Components/Tabela';
 import Form from './Components/Form';
+import PopUp from './Components/PopUp';
 
 class App extends Component {
   state = {
@@ -35,10 +36,14 @@ class App extends Component {
         }),
       }
     );
+    
+    PopUp.showPopUp('error', 'Removido com sucesso!');
+
   }
 
   adicionaLinha = novaLinha => {
-    this.setState({ autores: [...this.state.autores, novaLinha] })
+    this.setState({ autores: [...this.state.autores, novaLinha] });
+    PopUp.showPopUp('success', 'Adicionado com sucesso!');
   }
 
   render() {

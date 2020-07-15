@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormValidator from './FormValidator';
+import PopUp from './PopUp';
 
 const Input = props => {
     return (
@@ -72,7 +73,9 @@ class Form extends Component {
                 return elem.isInvalid;
             })
 
-            camposInvalidos.forEach(console.log);
+            camposInvalidos.forEach(campo =>{
+                PopUp.showPopUp('error', campo.message);
+            });
         }
 
     }
