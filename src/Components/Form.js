@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import FormValidator from './FormValidator';
 
 const Input = props => {
     return (
@@ -20,10 +20,32 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
+        this.formValidator = new FormValidator([
+            {
+                nomeCampo: 'nome',
+                tipoValidacao: 'isEmpty',
+                eValidoQuando: false,
+                mensagem: 'Por favor, digite um nome!'
+            },
+            {
+                nomeCampo: 'sobrenome',
+                tipoValidacao: 'isEmpty',
+                eValidoQuando: false,
+                mensagem: 'Por favor, digite um sobrenome!'
+            },
+            {
+                nomeCampo: 'email',
+                tipoValidacao: 'isEmail',
+                eValidoQuando: true,
+                mensagem: 'Email invalido!'
+            },
+        ]);
+
         this.stateInicial = {
             nome: '',
             sobrenome: '',
-            email: ''
+            email: '',
+            validacao: this.formValidator.valido()
         }
 
         this.state = this.stateInicial;
@@ -36,18 +58,33 @@ class Form extends Component {
     }
 
     onSubmit = () => {
-        this.props.adicionaLinha(this.state);
-        this.setState(this.stateInicial);
+
+        const validacao = this.formValidator.validar(this.state);
+
+        if (validacao.isValid) {
+            this.props.adicionaLinha(this.state);
+            this.setState(this.stateInicial);
+        } else {
+            const { nome, sobrenome, email } = validacao;
+            const campos = [nome, sobrenome, email]
+
+            const camposInvalidos = campos.filter(elem => {
+                return elem.isInvalid;
+            })
+
+            camposInvalidos.forEach(console.log);
+        }
+
     }
 
     render() {
+
         const cadastro = { ...this.state };
-        const { adicionaLinha } = this.props;
 
         return (
             <form>
                 <div className="row">
-                    <div className="col">
+                    <div className="col s6">
                         <Input
                             type="text"
                             label="Nome"
@@ -56,9 +93,7 @@ class Form extends Component {
                             onChange={this.onChange}
                         />
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
+                    <div className="col s6">
                         <Input
                             type="text"
                             label="Sobrenome"
@@ -67,7 +102,9 @@ class Form extends Component {
                             onChange={this.onChange}
                         />
                     </div>
-                    <div className="col">
+                </div>
+                <div className="row">
+                    <div className="col s12">
                         <Input
                             type="text"
                             label="Email"
@@ -78,15 +115,13 @@ class Form extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col">
                         <button
                             style={{ float: "right" }}
                             type="button"
-                            className="btn btn-primary"
-                            onClick={this.onSubmit}>                            
+                            className="btn blue-grey darken-4"
+                            onClick={this.onSubmit}>
                             Criar
                         </button>
-                    </div>
                 </div>
             </form>
         );

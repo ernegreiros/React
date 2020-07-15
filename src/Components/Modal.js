@@ -1,42 +1,50 @@
 import React, { Component } from 'react';
-
-const ModalHeader = props => {
-    return (
-        <div className="modal-header">
-            <h4 className="modal-title">{props.modalHeader}</h4>
-            <button type="button" className="close" data-dismiss="modal">&times;</button>
-        </div>
-    );
-}
-
-const ModalBody = props => {
-    return (
-        <div className="modal-body">
-            {props.modalBody}
-        </div>
-    );
-}
-
-const ModalFooter = props => {
-    return (
-        <div className="modal-footer">
-            {props.modalFooter}
-        </div>
-    );
-}
+import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
 
 class Modal extends Component {
 
+    componentDidMount() {
+        const options = {
+            onOpenStart: () => {
+                console.log("Open Start");
+            },
+            onOpenEnd: () => {
+                console.log("Open End");
+            },
+            onCloseStart: () => {
+                console.log("Close Start");
+            },
+            onCloseEnd: () => {
+                console.log("Close End");
+            },
+            inDuration: 250,
+            outDuration: 250,
+            opacity: 0.5,
+            dismissible: false,
+            startingTop: "4%",
+            endingTop: "10%"
+        };
+        M.Modal.init(this.Modal, options);
+    }
+
     render() {
-        const {modalHeader, modalBody, modalFooter, modalId} = this.props;
+        const { ModalBody, ModalId, ModalHeader } = this.props;
 
         return (
-            <div className="modal fade" data-backdrop="static" data-keyboard="false" id={modalId}>
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <ModalHeader modalHeader={modalHeader}/>
-                        <ModalBody modalBody={modalBody}/>
-                        <ModalFooter modalFooter={modalFooter}/>
+
+            <div
+                ref={Modal => {
+                    this.Modal = Modal;
+                }}
+                id={ModalId}
+                className="modal"
+            >
+                <div className="modal-content">
+                    <button style={{float:"right"}} className="modal-close btn red darken-4">X</button>
+                    <h4>{ModalHeader}</h4>
+                    <div style={{margin:"1%"}}>
+                        {ModalBody}
                     </div>
                 </div>
             </div>

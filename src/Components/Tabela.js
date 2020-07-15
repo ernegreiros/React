@@ -25,7 +25,7 @@ const TableBody = props => {
                         onClick = {() => {props.removeLinha(index)}}
                         style={{ margin: "1%" }}
                         type="button"
-                        className="btn btn-danger">
+                        className="btn-small red darken-4">
                         X
                     </button>
                 </td>
@@ -46,7 +46,7 @@ class Tabela extends Component {
         const { autores, removeLinha } = this.props;
 
         return (
-            <table className="table table-striped table-hover">
+            <table className="table highlight centered responsive-table ">
                 <TableHead />
                 <TableBody autores={autores} removeLinha={removeLinha} />
             </table>

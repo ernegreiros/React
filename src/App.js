@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import './App.css';
+import 'materialize-css/dist/css/materialize.min.css';
 import Modal from './Components/Modal';
 import Tabela from './Components/Tabela';
 import Form from './Components/Form';
@@ -46,23 +46,22 @@ class App extends Component {
 
     return (
       <Fragment>
+        <h2>Usuários</h2>
         <Tabela autores={this.state.autores} removeLinha={this.removeLinha} />
         <button
           type="button"
-          style={{ margin: "1%", float: "right" }}
-          className="btn btn-primary"
-          data-toggle="modal"
-          data-target={"#" + modalAdicionarId}>
+          style={{ margin: "2%", float: "right" }}
+          className="btn blue-grey darken-4 modal-trigger"
+          data-target={modalAdicionarId}>
           Adicionar Linha
         </button>
         <Modal
-          modalHeader="Novo Registro"
-          modalBody={<Form adicionaLinha={this.adicionaLinha} />}
-          modalId={modalAdicionarId}
+          ModalId={modalAdicionarId}
+          ModalHeader="Cadastro"
+          ModalBody={<Form adicionaLinha={this.adicionaLinha} />}
         />
       </Fragment>
     );
   }
 }
-
 export default App;
