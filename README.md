@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Run the api first
 Change to the directory ~/curso-react-api
 - run npm i
+- run npm start
 
 ## Run the aplication
 in the root directory 
