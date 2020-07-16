@@ -14,15 +14,15 @@ const TableHead = () => {
 }
 
 const TableBody = props => {
-    const linhas = props.autores.map((linha, index) => {
+    const rows = props.users.map((user) => {
         return (
-            <tr key={index}>
-                <td>{linha.nome}</td>
-                <td>{linha.sobrenome}</td>
-                <td>{linha.email}</td>
+            <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.lastname}</td>
+                <td>{user.email}</td>
                 <td>
                     <button
-                        onClick = {() => {props.removeLinha(index)}}
+                        onClick = {() => {props.removeUser(user.id)}}
                         style={{ margin: "1%" }}
                         type="button"
                         className="btn-small red darken-4">
@@ -35,24 +35,24 @@ const TableBody = props => {
 
     return (
         <tbody>
-            {linhas}
+            {rows}
         </tbody>
     );
 }
 
-class Tabela extends Component {
+class Table extends Component {
 
     render() {
-        const { autores, removeLinha } = this.props;
+        const { users, removeUser } = this.props;
 
         return (
             <table className="table highlight centered responsive-table ">
                 <TableHead />
-                <TableBody autores={autores} removeLinha={removeLinha} />
+                <TableBody users={users} removeUser={removeUser} />
             </table>
         );
     }
 
 }
 
-export default Tabela;
+export default Table;

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import NavBar from '../Components/NavBar';
-import Card from '../Components/Card';
+import NavBar from '../../Components/NavBar/NavBar';
+import Card from '../../Components/Card/Card';
 
 const Cards = () => {
     return (

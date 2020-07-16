@@ -27,7 +27,7 @@ const data = [
   },
 ];
 
-class GraficoArea extends PureComponent {
+class ChartArea extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/7j5bbbum/';
 
   render() {
@@ -52,4 +52,4 @@ class GraficoArea extends PureComponent {
   }
 }
 
-export default GraficoArea;
+export default ChartArea;

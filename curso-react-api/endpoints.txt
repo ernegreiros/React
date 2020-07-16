@@ -1,0 +1,24 @@
+ENDPOINTS API 
+
+GET
+
+api/users -> Retorno : Array de users (nome, sobrenome, email, id)
+
+api/user/nome -> Retorno : Array de Nomes (nome, id)
+
+api/user/sobrenome -> Retorno : Array de sobrenomes (sobrenome, id)
+
+api/user/:id -> Retorno : user com respectivo id (nome, sobrenome, email, id)
+
+POST 
+
+api/user -> Cria��o de user (Retorna o user inteiro do banco)
+
+
+PATCH 
+
+api/user/:id -> Atualiza um user no banco (Retorna o user inteiro)
+
+DELETE 
+
+api/user/:id -> Remove o user do banco

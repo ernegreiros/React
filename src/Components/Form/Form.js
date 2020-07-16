@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FormValidator from './FormValidator';
-import PopUp from './PopUp';
+import FormValidator from '../../utils/FormValidator';
+import PopUp from '../PopUp/PopUp';
 
 const Input = props => {
     return (
@@ -23,33 +23,33 @@ class Form extends Component {
 
         this.formValidator = new FormValidator([
             {
-                nomeCampo: 'nome',
-                tipoValidacao: 'isEmpty',
-                eValidoQuando: false,
-                mensagem: 'Por favor, digite um nome!'
+                fieldName: 'name',
+                validationMethod: 'isEmpty',
+                isValidWhen: false,
+                message: 'Por favor, digite um nome!'
             },
             {
-                nomeCampo: 'sobrenome',
-                tipoValidacao: 'isEmpty',
-                eValidoQuando: false,
-                mensagem: 'Por favor, digite um sobrenome!'
+                fieldName: 'lastname',
+                validationMethod: 'isEmpty',
+                isValidWhen: false,
+                message: 'Por favor, digite um sobrenome!'
             },
             {
-                nomeCampo: 'email',
-                tipoValidacao: 'isEmail',
-                eValidoQuando: true,
-                mensagem: 'Email invalido!'
+                fieldName: 'email',
+                validationMethod: 'isEmail',
+                isValidWhen: true,
+                message: 'Email invalido!'
             },
         ]);
 
-        this.stateInicial = {
-            nome: '',
-            sobrenome: '',
+        this.InitialState = {
+            name: '',
+            lastname: '',
             email: '',
-            validacao: this.formValidator.valido()
+            validation: this.formValidator.valid()
         }
 
-        this.state = this.stateInicial;
+        this.state = this.InitialState;
     }
 
     onChange = (event) => {
@@ -60,29 +60,28 @@ class Form extends Component {
 
     onSubmit = () => {
 
-        const validacao = this.formValidator.validar(this.state);
+        const validation = this.formValidator.validate(this.state);
 
-        if (validacao.isValid) {
-            this.props.adicionaLinha(this.state);
-            this.setState(this.stateInicial);
+        if (validation.isValid) {
+            this.props.addUser(this.state);
+            this.setState(this.InitialState);
         } else {
-            const { nome, sobrenome, email } = validacao;
-            const campos = [nome, sobrenome, email]
+            const { name, lastname, email } = validation;
+            const fields = [name, lastname, email]
 
-            const camposInvalidos = campos.filter(elem => {
+            const invalidFields = fields.filter(elem => {
                 return elem.isInvalid;
             })
 
-            camposInvalidos.forEach(campo =>{
-                PopUp.showPopUp('error', campo.message);
+            invalidFields.forEach(field => {
+                PopUp.showPopUp('error', field.message);
             });
         }
 
     }
 
     render() {
-
-        const cadastro = { ...this.state };
+        const formValues = { ...this.state };
 
         return (
             <form>
@@ -91,8 +90,8 @@ class Form extends Component {
                         <Input
                             type="text"
                             label="Nome"
-                            name="nome"
-                            value={cadastro.nome}
+                            name="name"
+                            value={formValues.name}
                             onChange={this.onChange}
                         />
                     </div>
@@ -100,8 +99,8 @@ class Form extends Component {
                         <Input
                             type="text"
                             label="Sobrenome"
-                            name="sobrenome"
-                            value={cadastro.sobrenome}
+                            name="lastname"
+                            value={formValues.lastname}
                             onChange={this.onChange}
                         />
                     </div>
@@ -112,18 +111,18 @@ class Form extends Component {
                             type="text"
                             label="Email"
                             name="email"
-                            value={cadastro.email}
+                            value={formValues.email}
                             onChange={this.onChange}
                         />
                     </div>
                 </div>
                 <div className="row">
-                        <button
-                            style={{ float: "right" }}
-                            type="button"
-                            className="btn blue-grey darken-4"
-                            onClick={this.onSubmit}>
-                            Criar
+                    <button
+                        style={{ float: "right" }}
+                        type="button"
+                        className="btn blue-grey darken-4"
+                        onClick={this.onSubmit}>
+                        Criar
                         </button>
                 </div>
             </form>

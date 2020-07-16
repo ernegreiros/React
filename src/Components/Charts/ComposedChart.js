@@ -24,7 +24,7 @@ const data = [
   },
 ];
 
- class GraficoComposto extends PureComponent {
+ class ChartComposed extends PureComponent {
   static jsfiddleUrl = '//jsfiddle.net/alidingling/9wnuL90w/';
 
   render() {
@@ -54,4 +54,4 @@ const data = [
     );
   }
 }
-export default GraficoComposto;
+export default ChartComposed;

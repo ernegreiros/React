@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import NavBar from '../Components/NavBar';
+import NavBar from '../../Components/NavBar/NavBar';
 
 const NotFound = () => {
     return (

@@ -7,7 +7,7 @@ const Card = (props) => {
             <div className="col s12 ">
                 <div className={"card" + size}>
                     <div className="card-image">
-                        <img className="responsive-img" src="https://www.hypeness.com.br/wp-content/uploads/2018/01/EDIT_Pocaterra-Ridge-in-Kananaskis-Country-CD.jpg" />
+                        <img className="responsive-img" alt="Card logo" src="https://www.hypeness.com.br/wp-content/uploads/2018/01/EDIT_Pocaterra-Ridge-in-Kananaskis-Country-CD.jpg" />
                         <span className="card-title">Card Title</span>
                     </div>
                     <div className="card-content">

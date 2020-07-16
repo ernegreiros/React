@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Graficos from './Pages/PaginaComGrafico';
-import NotFound from './Pages/NotFound';
-import Cards from './Pages/PaginaComCards';
+import Home from './Pages/Home/Home';
+import Charts from './Pages/Charts/ChartsPage';
+import NotFound from './Pages/NotFound/NotFound';
+import Cards from './Pages/Cards/CardsPage';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import * as serviceWorker from './serviceWorker';
@@ -12,8 +12,8 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path='/' exact={true} component={App} />
-      <Route path='/Graficos' component={Graficos} />
+      <Route path='/' exact={true} component={Home} />
+      <Route path='/Graficos' component={Charts} />
       <Route path='/Cards' component={Cards} />
       <Route component={NotFound} />
     </Switch>

@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-    ResponsiveContainer, PieChart, Pie, Legend,
-} from 'recharts';
+import { ResponsiveContainer, PieChart, Pie } from 'recharts';
 
 const data = [
     { name: 'Group A', value: 400, fill: '#0088FE' },
@@ -10,7 +8,7 @@ const data = [
     { name: 'Group D', value: 200, fill: '#FF8042' },
 ];
 
-class GraficoPizza extends PureComponent {
+class ChartPie extends PureComponent {
 
     render() {
         return (
@@ -25,4 +23,4 @@ class GraficoPizza extends PureComponent {
     }
 }
 
-export default GraficoPizza;
+export default ChartPie;
